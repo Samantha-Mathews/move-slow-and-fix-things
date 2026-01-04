@@ -23,10 +23,21 @@ import Base from '../../layouts/Base.astro';
       </div>
     </section>
     
-    <section class="headshots-section">
-      <h2>Headshots</h2>
-      <p class="placeholder">Add your headshots to /public/images/headshots/</p>
-    </section>
+<section class="headshots-section">
+  <h2>Headshots</h2>
+  <div class="headshots-grid">
+    <a href="/images/headshots/Sam full square.jpg" download>
+      <img src="/images/headshots/Sam full square.jpg" alt="Sam - Square" />
+    </a>
+    <a href="/images/headshots/Sam full.jpg" download>
+      <img src="/images/headshots/Sam full.jpg" alt="Sam - Full" />
+    </a>
+    <a href="/images/headshots/Sam Headshot Smiling.jpg" download>
+      <img src="/images/headshots/Sam Headshot Smiling.jpg" alt="Sam - Smiling" />
+    </a>
+  </div>
+  <p class="download-note">Click to download</p>
+</section>
     
     <section class="topics-section">
       <h2>Topics & Expertise</h2>
@@ -116,4 +127,33 @@ import Base from '../../layouts/Base.astro';
   .contact-section a {
     color: var(--ember);
   }
+  .headshots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.headshots-grid a {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--wood);
+  transition: border-color 0.3s ease;
+}
+
+.headshots-grid a:hover {
+  border-color: var(--ember);
+}
+
+.headshots-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.download-note {
+  font-size: 0.8rem;
+  color: var(--stone);
+  font-style: italic;
+}
 </style>
