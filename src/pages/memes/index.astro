@@ -1,14 +1,90 @@
 ---
-import DomainList from '../../layouts/DomainList.astro';
-import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import fs from 'node:fs';
+import path from 'node:path';
 
-const posts = await getCollection('meme-dumpster', ({ data }) => !data.draft);
+const memesDir = path.join(process.cwd(), 'public', 'memes');
+let memeFiles: string[] = [];
+
+try {
+  memeFiles = fs.readdirSync(memesDir).filter(file => 
+    /\.(jpg|jpeg|png|gif|webp)$/i.test(file)
+  );
+} catch (e) {
+  // Folder doesn't exist yet
+}
 ---
 
-<DomainList
-  title="Meme Dumpster"
-  description="The chaotic corner. Screenshots, absurdities, things that made me laugh. The part of my brain that isn't trying to be impressive."
-  domain="memes"
-  icon="🗑"
-  posts={posts}
-/>
+<Base title="Meme Dumpster" domain="meme-dumpster">
+  <div class="dumpster">
+    <header class="dumpster-header">
+      <div class="icon">🗑</div>
+      <h1>Meme Dumpster</h1>
+      <p>No context. No apologies.</p>
+    </header>
+    
+    {memeFiles.length === 0 ? (
+      <div class="empty">Nothing here yet.</div>
+    ) : (
+      <div class="meme-grid">
+        {memeFiles.map((file) => (
+          <div class="meme-item">
+            <img src={`/memes/${file}`} alt="" loading="lazy" />
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</Base>
+
+<style>
+  .dumpster {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .dumpster-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .dumpster-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .dumpster-header p {
+    color: var(--sand);
+    font-style: italic;
+  }
+  
+  .empty {
+    text-align: center;
+    color: var(--stone);
+    padding: 4rem;
+  }
+  
+  .meme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  
+  .meme-item {
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--night);
+    border: 1px solid var(--wood);
+  }
+  
+  .meme-item:hover {
+    border-color: var(--chaos);
+  }
+  
+  .meme-item i
