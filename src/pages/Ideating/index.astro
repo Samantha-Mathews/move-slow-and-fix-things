@@ -1,0 +1,14 @@
+---
+import DomainList from '../../layouts/DomainList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('ideating', ({ data }) => !data.draft);
+---
+
+<DomainList
+  title="Ideating"
+  description="The trail of thinking. Frameworks, essays, and explorations."
+  domain="ideating"
+  icon="✦"
+  posts={posts}
+/>

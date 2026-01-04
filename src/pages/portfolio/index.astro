@@ -1,0 +1,14 @@
+---
+import DomainList from '../../layouts/DomainList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('portfolio', ({ data }) => !data.draft);
+---
+
+<DomainList
+  title="Portfolio"
+  description="Paintings, photography, installations, and interactive experiences."
+  domain="portfolio"
+  icon="◈"
+  posts={posts}
+/>

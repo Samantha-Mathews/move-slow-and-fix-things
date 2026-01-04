@@ -37,15 +37,15 @@ const recentWriting = writing.sort((a, b) =>
     <div class="hero-visual">
       <div class="mind-map">
         <svg class="connections" viewBox="0 0 520 520">
-          <line x1="260" y1="260" x2="365" y2="30" />
-          <line x1="260" y1="260" x2="455" y2="90" />
-          <line x1="260" y1="260" x2="500" y2="260" />
-          <line x1="260" y1="260" x2="420" y2="440" />
-          <line x1="260" y1="260" x2="100" y2="440" />
-          <line x1="260" y1="260" x2="20" y2="260" />
-          <line x1="260" y1="260" x2="65" y2="90" />
-          <line x1="260" y1="260" x2="155" y2="30" />
-        </svg>
+  <line x1="260" y1="260" x2="260" y2="30" />
+  <line x1="260" y1="260" x2="445" y2="90" />
+  <line x1="260" y1="260" x2="490" y2="260" />
+  <line x1="260" y1="260" x2="445" y2="430" />
+  <line x1="260" y1="260" x2="260" y2="490" />
+  <line x1="260" y1="260" x2="75" y2="430" />
+  <line x1="260" y1="260" x2="30" y2="260" />
+  <line x1="260" y1="260" x2="75" y2="90" />
+</svg>
         
         <div class="portrait-container">
           <div class="portrait">
@@ -54,44 +54,39 @@ const recentWriting = writing.sort((a, b) =>
         </div>
         
         <a href="/music" class="node node-music">
-          <div class="node-dot">♪</div>
-          <span class="node-label">Music</span>
-        </a>
-        
-        <a href="/research" class="node node-research">
-          <div class="node-dot">◎</div>
-          <span class="node-label">Research</span>
-        </a>
-        
-        <a href="/building" class="node node-building">
-          <div class="node-dot">⬡</div>
-          <span class="node-label">Building</span>
-        </a>
-        
-        <a href="/writing" class="node node-writing">
-          <div class="node-dot">✎</div>
-          <span class="node-label">Writing</span>
-        </a>
-        
-        <a href="/ideas" class="node node-ideas">
-          <div class="node-dot">✦</div>
-          <span class="node-label">Ideas</span>
-        </a>
-        
-        <a href="/stan" class="node node-stan">
-          <div class="node-dot">♥</div>
-          <span class="node-label">Stan</span>
-        </a>
-        
-        <a href="/memes" class="node node-memes">
-          <div class="node-dot">🗑</div>
-          <span class="node-label">Meme Dumpster</span>
-        </a>
-        
-        <a href="/art" class="node node-art">
-          <div class="node-dot">◐</div>
-          <span class="node-label">Art</span>
-        </a>
+  <div class="node-dot">♪</div>
+  <span class="node-label">Music</span>
+</a>
+
+<a href="/portfolio" class="node node-portfolio">
+  <div class="node-dot">◈</div>
+  <span class="node-label">Portfolio</span>
+</a>
+
+<a href="/ideating" class="node node-ideating">
+  <div class="node-dot">✦</div>
+  <span class="node-label">Ideating</span>
+</a>
+
+<a href="/press" class="node node-press">
+  <div class="node-dot">◉</div>
+  <span class="node-label">Press</span>
+</a>
+
+<a href="/speaking" class="node node-speaking">
+  <div class="node-dot">▣</div>
+  <span class="node-label">Speaking</span>
+</a>
+
+<a href="/stan" class="node node-stan">
+  <div class="node-dot">♥</div>
+  <span class="node-label">Stan</span>
+</a>
+
+<a href="/memes" class="node node-memes">
+  <div class="node-dot">🗑</div>
+  <span class="node-label">Meme Dumpster</span>
+</a>
       </div>
     </div>
   </section>
@@ -441,30 +436,27 @@ const recentWriting = writing.sort((a, b) =>
     color: var(--cream);
   }
   
-  /* Node positions */
-  .node-music { top: 0%; right: 28%; }
-  .node-music .node-dot { background: linear-gradient(135deg, var(--ember) 0%, var(--ember-glow) 100%); }
-  
-  .node-research { top: 12%; right: 8%; }
-  .node-research .node-dot { background: linear-gradient(135deg, var(--moss) 0%, var(--moss-light) 100%); }
-  
-  .node-building { top: 45%; right: -2%; }
-  .node-building .node-dot { background: linear-gradient(135deg, var(--honey) 0%, var(--honey-light) 100%); }
-  
-  .node-writing { bottom: 8%; right: 18%; }
-  .node-writing .node-dot { background: linear-gradient(135deg, var(--stone) 0%, var(--sand) 100%); }
-  
-  .node-ideas { bottom: 8%; left: 18%; }
-  .node-ideas .node-dot { background: linear-gradient(135deg, #8B7355 0%, #A69078 100%); }
-  
-  .node-stan { top: 45%; left: -2%; }
-  .node-stan .node-dot { background: linear-gradient(135deg, var(--violet) 0%, var(--violet-light) 100%); }
-  
-  .node-memes { top: 12%; left: 8%; }
-  .node-memes .node-dot { background: linear-gradient(135deg, var(--chaos) 0%, var(--chaos-light) 100%); font-size: 1.1rem; }
-  
-  .node-art { top: 0%; left: 28%; }
-  .node-art .node-dot { background: linear-gradient(135deg, var(--azure) 0%, var(--azure-light) 100%); }
+/* Node positions - 7 nodes arranged in a circle */
+.node-music { top: 0%; left: 50%; transform: translateX(-50%); }
+.node-music .node-dot { background: linear-gradient(135deg, var(--ember) 0%, var(--ember-glow) 100%); }
+
+.node-portfolio { top: 10%; right: 5%; }
+.node-portfolio .node-dot { background: linear-gradient(135deg, var(--azure) 0%, var(--azure-light) 100%); }
+
+.node-ideating { top: 40%; right: -5%; }
+.node-ideating .node-dot { background: linear-gradient(135deg, var(--honey) 0%, var(--honey-light) 100%); }
+
+.node-press { bottom: 10%; right: 10%; }
+.node-press .node-dot { background: linear-gradient(135deg, var(--moss) 0%, var(--moss-light) 100%); }
+
+.node-speaking { bottom: 0%; left: 50%; transform: translateX(-50%); }
+.node-speaking .node-dot { background: linear-gradient(135deg, var(--stone) 0%, var(--sand) 100%); }
+
+.node-stan { bottom: 10%; left: 10%; }
+.node-stan .node-dot { background: linear-gradient(135deg, var(--violet) 0%, var(--violet-light) 100%); }
+
+.node-memes { top: 40%; left: -5%; }
+.node-memes .node-dot { background: linear-gradient(135deg, var(--chaos) 0%, var(--chaos-light) 100%); }
   
   /* Current Section */
   .current {
