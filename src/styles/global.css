@@ -1,0 +1,275 @@
+/* Move Slow and Fix Things - Design System */
+
+:root {
+  /* Core palette */
+  --deep: #0D0C0A;
+  --night: #1A1816;
+  --wood: #2A2520;
+  --bark: #3D362E;
+  --stone: #6B6258;
+  --sand: #A89B8A;
+  --bone: #D4C9BA;
+  --cream: #EDE6DB;
+  
+  /* Domain colors */
+  --ember: #E07850;
+  --ember-glow: #F4A582;
+  --moss: #5C7A5E;
+  --moss-light: #8AAB7C;
+  --honey: #D4A03C;
+  --honey-light: #E8C36A;
+  --violet: #8B7AA8;
+  --violet-light: #B8A8D4;
+  --chaos: #D45C8C;
+  --chaos-light: #F088B0;
+  --azure: #4A8DB7;
+  --azure-light: #7AB8D8;
+  
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Karla', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 17px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--deep);
+  color: var(--bone);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: 10000;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.3;
+}
+
+h1 { font-size: 3.2rem; }
+h2 { font-size: 2.4rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; }
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: var(--ember);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--ember-glow);
+}
+
+em {
+  color: var(--ember-glow);
+  font-style: italic;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Section labels */
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--stone);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--wood);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--ember);
+  color: var(--deep);
+}
+
+.btn-primary:hover {
+  background: var(--ember-glow);
+  color: var(--deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(224, 120, 80, 0.2);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--bone);
+  border: 1px solid var(--bark);
+}
+
+.btn-secondary:hover {
+  border-color: var(--sand);
+  background: var(--night);
+  color: var(--cream);
+}
+
+/* Cards */
+.card {
+  padding: 1.75rem;
+  background: var(--night);
+  border: 1px solid var(--wood);
+  border-radius: 4px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--bark);
+  transform: translateY(-3px);
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  background: var(--wood);
+  border-radius: 3px;
+  font-size: 0.65rem;
+  color: var(--sand);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Domain-specific colors */
+.domain-music { --domain-color: var(--ember); --domain-light: var(--ember-glow); }
+.domain-art { --domain-color: var(--azure); --domain-light: var(--azure-light); }
+.domain-research { --domain-color: var(--moss); --domain-light: var(--moss-light); }
+.domain-building { --domain-color: var(--honey); --domain-light: var(--honey-light); }
+.domain-writing { --domain-color: var(--sand); --domain-light: var(--bone); }
+.domain-ideas { --domain-color: #8B7355; --domain-light: #A69078; }
+.domain-stan { --domain-color: var(--violet); --domain-light: var(--violet-light); }
+.domain-meme-dumpster { --domain-color: var(--chaos); --domain-light: var(--chaos-light); }
+
+/* Prose content styling */
+.prose {
+  max-width: 680px;
+}
+
+.prose h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose ul, .prose ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--ember);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--sand);
+}
+
+.prose pre {
+  background: var(--night);
+  border: 1px solid var(--wood);
+  border-radius: 4px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.prose code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.prose img {
+  margin: 2rem 0;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--wood);
+  margin: 3rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+  
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.3rem; }
+}

@@ -1,0 +1,47 @@
+---
+import Post from '../../layouts/Post.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('meme-dumpster');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Post
+  title={post.data.title}
+  description={post.data.description}
+  date={post.data.date}
+  cover={post.data.cover}
+  tags={post.data.tags}
+  domain="memes"
+  domainLabel="Meme Dumpster"
+  domainIcon="🗑"
+>
+  {post.data.mood && (
+    <div class="mood-tag">
+      Mood: <span>{post.data.mood}</span>
+    </div>
+  )}
+  
+  <Content />
+</Post>
+
+<style>
+  .mood-tag {
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    color: var(--stone);
+  }
+  
+  .mood-tag span {
+    color: var(--chaos-light);
+    font-style: italic;
+  }
+</style>

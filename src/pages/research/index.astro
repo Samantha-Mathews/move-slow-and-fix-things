@@ -1,0 +1,14 @@
+---
+import DomainList from '../../layouts/DomainList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('research', ({ data }) => !data.draft);
+---
+
+<DomainList
+  title="Research"
+  description="Papers, talks, panels, and collaborations on spatial cognition and learning science."
+  domain="research"
+  icon="◎"
+  posts={posts}
+/>

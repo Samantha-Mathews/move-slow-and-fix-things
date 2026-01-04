@@ -1,0 +1,14 @@
+---
+import DomainList from '../../layouts/DomainList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('meme-dumpster', ({ data }) => !data.draft);
+---
+
+<DomainList
+  title="Meme Dumpster"
+  description="The chaotic corner. Screenshots, absurdities, things that made me laugh. The part of my brain that isn't trying to be impressive."
+  domain="memes"
+  icon="🗑"
+  posts={posts}
+/>

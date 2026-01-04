@@ -1,0 +1,74 @@
+---
+import Post from '../../layouts/Post.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('music');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Post
+  title={post.data.title}
+  description={post.data.description}
+  date={post.data.date}
+  cover={post.data.cover}
+  tags={post.data.tags}
+  domain="music"
+  domainLabel="Music"
+  domainIcon="♪"
+>
+  <Content />
+  
+  {(post.data.spotify || post.data.bandcamp || post.data.soundcloud) && (
+    <div class="listen-links">
+      <h4>Listen</h4>
+      <div class="links">
+        {post.data.spotify && <a href={post.data.spotify} target="_blank">Spotify</a>}
+        {post.data.bandcamp && <a href={post.data.bandcamp} target="_blank">Bandcamp</a>}
+        {post.data.soundcloud && <a href={post.data.soundcloud} target="_blank">SoundCloud</a>}
+      </div>
+    </div>
+  )}
+</Post>
+
+<style>
+  .listen-links {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--night);
+    border: 1px solid var(--wood);
+    border-radius: 6px;
+  }
+  
+  .listen-links h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--stone);
+    margin-bottom: 1rem;
+  }
+  
+  .links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .links a {
+    padding: 0.5rem 1rem;
+    background: var(--wood);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: background 0.3s ease;
+  }
+  
+  .links a:hover {
+    background: var(--bark);
+  }
+</style>

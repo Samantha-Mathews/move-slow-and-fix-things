@@ -1,0 +1,14 @@
+---
+import DomainList from '../../layouts/DomainList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('writing', ({ data }) => !data.draft);
+---
+
+<DomainList
+  title="Writing"
+  description="Essays, blog posts, and longer pieces on consciousness, AI, and relational knowledge."
+  domain="writing"
+  icon="✎"
+  posts={posts}
+/>

@@ -1,0 +1,159 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  domain?: string;
+}
+
+const { title, description = "Sam Mathews Chase — Founder, researcher, musician. Building bridges between minds and systems.", domain } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} | Move Slow and Fix Things</title>
+  <meta name="description" content={description}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body class={domain ? `domain-${domain}` : ''}>
+  <header>
+    <a href="/" class="logo">Sam Mathews Chase</a>
+    <nav>
+      <a href="/work">Work</a>
+      <a href="/ideas">Ideas</a>
+      <a href="/art">Art</a>
+      <a href="/stan">Stan</a>
+      <a href="/memes">Memes</a>
+      <a href="/now">Now</a>
+      <a href="/listen">Listen</a>
+    </nav>
+  </header>
+  
+  <main>
+    <slot />
+  </main>
+  
+  <footer>
+    <div class="footer-links">
+      <a href="https://twitter.com/samchase">Twitter</a>
+      <a href="https://linkedin.com/in/samchase">LinkedIn</a>
+      <a href="https://github.com/samchase">GitHub</a>
+      <a href="https://soundcloud.com/blondtron">SoundCloud</a>
+      <a href="https://blondtron.bandcamp.com">Bandcamp</a>
+    </div>
+    <div class="footer-note">
+      Made with care in Sooke, BC — Klahoose First Nation territory
+    </div>
+  </footer>
+</body>
+</html>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1.25rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: linear-gradient(to bottom, var(--deep) 0%, var(--deep) 50%, transparent 100%);
+  }
+  
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    color: var(--sand);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .logo:hover {
+    color: var(--ember);
+  }
+  
+  nav {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  nav a {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--stone);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: var(--cream);
+  }
+  
+  main {
+    min-height: 100vh;
+    padding-top: 5rem;
+  }
+  
+  footer {
+    padding: 2.5rem 5rem;
+    background: var(--night);
+    border-top: 1px solid var(--wood);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 1.75rem;
+  }
+  
+  .footer-links a {
+    font-size: 0.8rem;
+    color: var(--stone);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover {
+    color: var(--ember);
+  }
+  
+  .footer-note {
+    font-size: 0.75rem;
+    color: var(--stone);
+    font-style: italic;
+    font-family: var(--font-display);
+  }
+  
+  @media (max-width: 768px) {
+    header {
+      padding: 1rem 1.5rem;
+    }
+    
+    nav {
+      display: none;
+    }
+    
+    footer {
+      padding: 2rem 1.5rem;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+</style>

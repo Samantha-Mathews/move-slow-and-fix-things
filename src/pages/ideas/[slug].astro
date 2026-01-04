@@ -1,0 +1,66 @@
+---
+import Post from '../../layouts/Post.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('ideas');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Post
+  title={post.data.title}
+  description={post.data.description}
+  date={post.data.date}
+  cover={post.data.cover}
+  tags={post.data.tags}
+  domain="ideas"
+  domainLabel="Ideas"
+  domainIcon="✦"
+>
+  {post.data.status && (
+    <div class="idea-status">
+      <span class={`status-badge status-${post.data.status}`}>
+        {post.data.status === 'seed' && '🌱 Seed'}
+        {post.data.status === 'growing' && '🌿 Growing'}
+        {post.data.status === 'mature' && '🌳 Mature'}
+      </span>
+    </div>
+  )}
+  
+  <Content />
+</Post>
+
+<style>
+  .idea-status {
+    margin-bottom: 2rem;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+  }
+  
+  .status-seed {
+    background: rgba(92, 122, 94, 0.2);
+    color: var(--moss-light);
+  }
+  
+  .status-growing {
+    background: rgba(212, 160, 60, 0.2);
+    color: var(--honey-light);
+  }
+  
+  .status-mature {
+    background: rgba(224, 120, 80, 0.2);
+    color: var(--ember-glow);
+  }
+</style>

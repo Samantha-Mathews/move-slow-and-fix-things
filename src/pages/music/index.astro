@@ -1,0 +1,14 @@
+---
+import DomainList from '../../layouts/DomainList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('music', ({ data }) => !data.draft);
+---
+
+<DomainList
+  title="Music"
+  description="As Blondtron, I've produced electronic music, played festivals across North America, and scored for film and games. Writing songs since age 5."
+  domain="music"
+  icon="♪"
+  posts={posts}
+/>

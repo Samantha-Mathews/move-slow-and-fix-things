@@ -1,0 +1,14 @@
+---
+import DomainList from '../../layouts/DomainList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('building', ({ data }) => !data.draft);
+---
+
+<DomainList
+  title="Building"
+  description="Companies, products, and investments. Things I've made or helped make."
+  domain="building"
+  icon="⬡"
+  posts={posts}
+/>

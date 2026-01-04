@@ -1,0 +1,14 @@
+---
+import DomainList from '../../layouts/DomainList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('art', ({ data }) => !data.draft);
+---
+
+<DomainList
+  title="Art"
+  description="Installations, pieces, and creative works that exist for their own sake."
+  domain="art"
+  icon="◐"
+  posts={posts}
+/>
